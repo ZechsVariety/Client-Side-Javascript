@@ -10,17 +10,24 @@
 	<h1>Numbers and Operators</h1>
 	<p></p>
     <script>
-        /* STEP 1: Number types (integer, float, and double)
+        const output = document.querySelector("p");
+        /* DONE 1: Number types (integer, float, and double)
         declare and initialize an integer and a float, then in the console, reveal the number type with typeof(varName) */
-        
+        let myInt = 5;
+        let myFloat = 5.12345;
+        let myDouble = 5.123456789123456789123456789;
+        let myBinary = 0b1001010100101001;
+        let myHex = 0x04F6E2;
         // Note - there are also different number systems: binary, octal, and hexadecimal
 
         /* STEP 2: Arithmetic operators
         + (addition), - (subtraction), * (multiplication), / (division), % (remainder or modulo), ** (exponent) */
-
+        let step2a = 5 ** 2;
+        output.textContent = step2a;
 
         // Try declaring and initializing a couple of variables as numbers
-
+        let num1 = 90;
+        let num2 = 30;
 
         /* OR… num1 * num2 / 8 + 2 - 0.5; */
 
