@@ -24,10 +24,16 @@ btn.addEventListener('click', function() {
 	var searchName = input.value;
 	input.value = '';
 	input.focus();
-	/* STEP 2a: Create a FOR loop to iterate through the cities array */
-
+	/* DONE 2a: Create a FOR loop to iterate through the cities array */
+	for (let i = 0; i < cities.length; i++) {
 		/* STEP 2b: Build an IF/ELSE conditional that compares searchName with cities[i] */
-
+		if(searchName.trim().toLowerCase() == cities[i].toLowerCase()) {
+			result.textContent = `Found ${cities[i]}!`;
+			break;
+		} else {
+			result.textContent = "Failure.";
+		}
+	}
 });
 
 
