@@ -2,9 +2,9 @@ async function startProgram() {
     let currentHeading = 0;
     // Drive the robot in a complete circle, using 12 straight line segments and changing the direction 30 degrees with each iteration of the below loop
     while (currentHeading <= 360) {
-        // STEP 1a: declare a local variable named newLedColor, and initialize it by calling the function getRgbColorFromHue()
-        
-        // STEP 1b: pass the currentHeading variable into the function call above as an argument
+        // DONE 1a: declare a local variable named newLedColor, and initialize it by calling the function getRgbColorFromHue()
+        let newLedColor = getRgbColorFromHue(currentHeading);
+        // DONE 1b: pass the currentHeading variable into the function call above as an argument
         await setMainLed(newLedColor);
         await scrollMatrixText(currentHeading.toString(), newLedColor, 24, false);
         await roll(currentHeading, 25, 1);
@@ -29,7 +29,7 @@ function getRgbColorFromHue() {
     blue = Math.round(Math.max(0, Math.min(255, blue)));
 
     // STEP 3: Return the RGB values as a JavaScript object
-    
+
 };
 
 // Helper function used to convert degrees to radians, as Math.cos expects radians
