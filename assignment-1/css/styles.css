@@ -7,7 +7,7 @@ body {
 table {
     border-collapse: collapse;
 
-    width: 40%;
+    width: 50%;
     table-layout: fixed;
 
     margin: auto;
@@ -43,6 +43,11 @@ tr td:nth-of-type(5), tr th:nth-of-type(5), #wordButtons button:nth-of-type(5) {
     background-color: deeppink;
 }
 
-#selected {
-    background-color: white;
+.selected {
+    background-color: white !important;
+}
+
+footer {
+    text-align: right;
+    padding: 10px;
 }

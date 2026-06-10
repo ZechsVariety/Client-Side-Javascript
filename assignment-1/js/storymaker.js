@@ -6,11 +6,11 @@ const submitButton = document.querySelector("#submit");
 const output = document.querySelector("#output");
 
 //arrays
-const characters = ["The turkey", "Mom", "Dad", "The dog", "My teacher", "The elephant", "The cat"];
-const actions = ["sat on", "ate", "danced with", "saw", "doesn't like", "kissed"];
-const adjectives = ["funny", "scary", "goofy", "slimy", "barking", "fat"];
-const animals = ["goat", "monkey", "fish", "cow", "frog", "bug", "worm"];
-const places = ["on the moon", "on the chair", "in my spaghetti", "in my soup", "on the grass", "in my shoes"];
+const characters = ["The turkey", "Mom", "Dad", "The dog", "My teacher", "The elephant", "The cat", "The hero", "The villain", "My friend", "Jerma"];
+const actions = ["sat on", "ate", "danced with", "saw", "doesn't like", "kissed", "slapped", "got eaten by", "is scared of", "is in love with"];
+const adjectives = ["funny", "scary", "goofy", "slimy", "barking", "fat", "giant", "tiny", "bald", "stinky"];
+const animals = ["goat", "monkey", "fish", "cow", "frog", "bug", "worm", "rat", "person"];
+const places = ["on the moon", "on the chair", "in my spaghetti", "in my soup", "on the grass", "in my shoes", "around the corner", "in my class", "in the woods", "two times in a row"];
 
 //other
 const columnCount = 5;
@@ -81,21 +81,22 @@ wordButtons.addEventListener("click", (event) => {
 
         //run through each cell in the column to reassign selected cell
         for(let i = 0; i < cells.length; i++) {
-            //console.log(cells[i].textContent + cells[i].getAttribute("id"));
+            //console.log(cells[i].textContent + cells[i].getAttribute("class"));
+            //console.log(cells[i].textContent + cells[i].className);
 
-            if(cells[i].id == "selected") {
-                cells[i].removeAttribute("id");
+            if(cells[i].className == "selected") {
+                cells[i].removeAttribute("class");
                 
                 //loop back to start of array if next value is blank
                 if(typeof cells[i + 1] === "undefined" || cells[i + 1].textContent == "") {
-                    cells[0].id = "selected";
+                    cells[0].className = "selected";
                 }
                 //otherwise, set the next value to selected
                 else {
-                    cells[i + 1].id = "selected";
+                    cells[i + 1].className = "selected";
                 }
 
-                //break so that the selected id doesnt loop back around to its original placement
+                //break so that the selected class doesnt loop back around to its original placement
                 break;
             }
         }
@@ -129,15 +130,20 @@ randomButton.addEventListener("click", (event) => {
             //check if the index matches the random one
             if(j == randoms[i]) {
                 //if the cell is blank, set the previous cell to selected (this technically means the last cell followed by a blank has the highest chance but whatever)
-                if(cells[j].textContent == "")
-                    cells[j - 1].id = "selected";
+                if(cells[j].textContent == "") {
+                    //reduce random by 1
+                    randoms[i] = randoms[i] - 1;
+                    //put j back 2 times to ensure it goes over this value again
+                    j -= 2;
+                    //cells[j - 1].id = "selected";
+                }
                 //otherwise, set this cell to selected
                 else
-                    cells[j].id = "selected"
+                    cells[j].className = "selected";
             }
             //remove selected from other cells
-            else if(cells[j].id == "selected") {
-                cells[j].removeAttribute("id");
+            else if(cells[j].className == "selected") {
+                cells[j].removeAttribute("class");
             }
         }
     }
@@ -163,7 +169,7 @@ submitButton.addEventListener("click", (event) => {
     for(let i = 0; i < columnCount; i++)
     {
         columns[i].forEach((item) => {
-            if(item.id == "selected")
+            if(item.className == "selected")
             {
                 newSentence += item.textContent + " ";
                 //break;
