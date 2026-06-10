@@ -16,6 +16,7 @@ const places = ["on the moon", "on the chair", "in my spaghetti", "in my soup", 
 const columnCount = 5;
 
 //run through each array
+//NOTE: I am not sure if we have covered this in class but I hope it's okay since its just a different way of making a forloop, just with an anonymous function inside it
 characters.forEach((item, index) => {
     populateColumn(item, index, 0);
 });
@@ -62,7 +63,6 @@ function populateColumn(item, index, column) {
 
     //add this item to the corresponding cell
     cells[column].textContent = item;
-    //console.log(cells[column].textContent);
 }
 
 //any of the word buttons are clicked
@@ -70,20 +70,12 @@ wordButtons.addEventListener("click", (event) => {
     //check that it was infact a button that was clicked
 	if(event.target && event.target.nodeName === "BUTTON") {
         const targetColumn = event.target.textContent;
-		//console.log(targetColumn);
-
-        //const rows = tableBody.querySelectorAll("tr");
-        //const cells = rows[target].querySelectorAll("td");
 
         //find all cells in the correct column
         const cells = tableBody.querySelectorAll(`tr td:nth-of-type(${targetColumn})`);
-        //console.log(cells);
 
         //run through each cell in the column to reassign selected cell
         for(let i = 0; i < cells.length; i++) {
-            //console.log(cells[i].textContent + cells[i].getAttribute("class"));
-            //console.log(cells[i].textContent + cells[i].className);
-
             if(cells[i].className == "selected") {
                 cells[i].removeAttribute("class");
                 
@@ -117,8 +109,6 @@ randomButton.addEventListener("click", (event) => {
         //thank you mdn: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
         randoms.push(Math.floor(Math.random() * columns[i].length));
     }
-
-    //console.log(randoms);
 
     //run through each column and set the cell with the random index to selected
     for(let i = 0; i < columns.length; i++) {
@@ -159,9 +149,7 @@ submitButton.addEventListener("click", (event) => {
     for(let i = 0; i < columnCount; i++)
     {
         columns.push(tableBody.querySelectorAll(`tr td:nth-of-type(${i + 1})`));
-        //console.log(columns[i]);
     }
-    //console.log(columns);
 
     let newSentence = "";
 
