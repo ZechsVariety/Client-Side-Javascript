@@ -1,6 +1,7 @@
 //objects
 const tableBody = document.querySelector("table tbody");
 const wordButtons = document.querySelector("#wordButtons");
+const randomButton = document.querySelector("#random");
 const submitButton = document.querySelector("#submit");
 const output = document.querySelector("#output");
 
@@ -99,6 +100,47 @@ wordButtons.addEventListener("click", (event) => {
             }
         }
 	}
+});
+
+//randomize pressed
+randomButton.addEventListener("click", (event) => {
+    let randoms = [];
+    
+    //retrieve columns and set random values
+    let columns = [];
+    for(let i = 0; i < columnCount; i++)
+    {
+        columns.push(tableBody.querySelectorAll(`tr td:nth-of-type(${i + 1})`));
+        
+        //add a random index to the randoms array
+        //thank you mdn: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+        randoms.push(Math.floor(Math.random() * columns[i].length));
+    }
+
+    //console.log(randoms);
+
+    //run through each column and set the cell with the random index to selected
+    for(let i = 0; i < columns.length; i++) {
+        const cells = tableBody.querySelectorAll(`tr td:nth-of-type(${i + 1})`);
+
+        //run through each cell in the column
+        for(let j = 0; j < columns[i].length; j++) {
+            //console.log("j: " + j + "\nrandom: " + randoms[i])
+            //check if the index matches the random one
+            if(j == randoms[i]) {
+                //if the cell is blank, set the previous cell to selected (this technically means the last cell followed by a blank has the highest chance but whatever)
+                if(cells[j].textContent == "")
+                    cells[j - 1].id = "selected";
+                //otherwise, set this cell to selected
+                else
+                    cells[j].id = "selected"
+            }
+            //remove selected from other cells
+            else if(cells[j].id == "selected") {
+                cells[j].removeAttribute("id");
+            }
+        }
+    }
 });
 
 //playback pressed
