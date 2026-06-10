@@ -1,6 +1,8 @@
 //objects
 const tableBody = document.querySelector("table tbody");
 const wordButtons = document.querySelector("#wordButtons");
+const submitButton = document.querySelector("#submit");
+const output = document.querySelector("#output");
 
 //arrays
 const characters = ["The turkey", "Mom", "Dad", "The dog", "My teacher", "The elephant", "The cat"];
@@ -8,6 +10,9 @@ const actions = ["sat on", "ate", "danced with", "saw", "doesn't like", "kissed"
 const adjectives = ["funny", "scary", "goofy", "slimy", "barking", "fat"];
 const animals = ["goat", "monkey", "fish", "cow", "frog", "bug", "worm"];
 const places = ["on the moon", "on the chair", "in my spaghetti", "in my soup", "on the grass", "in my shoes"];
+
+//other
+const columnCount = 5;
 
 //run through each array
 characters.forEach((item, index) => {
@@ -40,7 +45,7 @@ function populateColumn(item, index, column) {
         const newRow = document.createElement("tr");
 
         //add 5 empty cells to the new row
-        for(let i = 0; i < 5; i++) {
+        for(let i = 0; i < columnCount; i++) {
             const newCell = document.createElement("td");
             newRow.append(newCell);
         }
@@ -94,4 +99,36 @@ wordButtons.addEventListener("click", (event) => {
             }
         }
 	}
+});
+
+//playback pressed
+submitButton.addEventListener("click", (event) => {
+    //const columnCount = tableBody.querySelectorAll(`tr:nth-of-type(${0}) td`).length;
+
+    //retrieve columns
+    //ideally this would be its own function but id have to refactor the previous code to include it so im just keeping it like this
+    let columns = [];
+    for(let i = 0; i < columnCount; i++)
+    {
+        columns.push(tableBody.querySelectorAll(`tr td:nth-of-type(${i + 1})`));
+        //console.log(columns[i]);
+    }
+    //console.log(columns);
+
+    let newSentence = "";
+
+    //run through each column and add the selected cell to the new sentence
+    for(let i = 0; i < columnCount; i++)
+    {
+        columns[i].forEach((item) => {
+            if(item.id == "selected")
+            {
+                newSentence += item.textContent + " ";
+                //break;
+            }
+        });
+    }
+    
+    //display the new sentence
+    output.textContent = newSentence;
 });
