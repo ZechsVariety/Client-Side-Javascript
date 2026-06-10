@@ -27,6 +27,8 @@ const submit = document.getElementById('submit');
 const para = document.querySelector('#formErrors');
 
 /* STEP 2b: Create a script to capture the onsubmit event using preventDefault() */
+//eventlistener with "submit"
+//event.preventDefault();
 
 // Next, open up gallery.html...
 
