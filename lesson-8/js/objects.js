@@ -1,19 +1,34 @@
 const output = document.getElementById("output");
 
-/* STEP 1: Create an object (looks a lot like declaring a variable, but with empty braces), then open this page in a browser and enter 'person' in the console */
+/* DONE 1: Create an object (looks a lot like declaring a variable, but with empty braces), then open this page in a browser and enter 'person' in the console */
+let person = {
+    name: "Zech Ferg",
+    age: 18,
+    gender: "Male",
+    interests: ["Music", "Art", "Whatnot"],
+    greeting: function() {
+        alert(`Hey, this is ${this.name}`);
+    },
+    bio: function() {
+        //.join() changes the seperators of each list value
+        //return `The interests of ${this.name}, of age: ${this.age}, of gender: ${this.gender}, are ${this.interests.join(", ")}.`;
+        return `${this.name} is a(n) ${this.age} year-old ${this.gender}, who is interested in ${this.interests.join(", ")}.`
+    }
+}
 
-/* STEP 2a: Add other data items to the above object, like name, age, gender, and interests */
+/* DONE 2a: Add other data items to the above object, like name, age, gender, and interests */
 
-/* STEP 2b: Enter the following directly into the console:
+/* DONE 2b: Enter the following directly into the console:
     person.name[0]
     person.age
     person.gender
     person.interests[0]
 */
 
-/* STEP 3: Add a simple function (now called a method in this context) to the above object called "greeting" that creates an alert dialog, then type person.greeting() into the console */
+/* DONE 3: Add a simple function (now called a method in this context) to the above object called "greeting" that creates an alert dialog, then type person.greeting() into the console */
 
-/* STEP 4: Add a more complicated function to the object that describes the person, their age, gender, and interests in a string that is output to an alert dialog */
+/* DONE 4: Add a more complicated function to the object that describes the person, their age, gender, and interests in a string that is output to an alert dialog */
+output.textContent = person.bio();
 
 // The object above is called an 'object literal' - in that we build each part of the object manually, rather than instatiating it from a class (which we will cover later). Objects can be easier to work with than arrays, as you can name each element
 
