@@ -1,6 +1,22 @@
-const output = document.querySelector('#output');
+const output = document.querySelector("#output");
 
 /* STEP 1: Instead of a constructor function, let's try a JavaScript class called 'Coffee' */
+
+// add a serveIt method
+
+// Generate an IMG of the coffee ordered
+
+// Set the src path for the IMG element
+
+// Determine caffeine status of the coffee
+
+// Set the size of the cup SVG image based on this.size
+
+// Size the IMG in terms of its height based on above number from the switch
+
+// Generate a description of the coffee and put it into the IMG title attribute
+
+// Insert the new IMG element into the paragraph
 
 /* STEP 2: Instatiate a coffee based on the above constructor function */
 
