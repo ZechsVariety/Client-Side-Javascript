@@ -94,3 +94,46 @@ zechsLatte.serveIt();
 // This page inspired by and adapted from https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript
 
 // Special thanks to https://openclipart.org/detail/293550/coffee-to-go for the very cool coffee cup SVG
+ 
+
+
+
+//lab 2
+
+//find output p elements to display descriptions
+const outputText = document.querySelector("#outputText");
+const outputText2 = document.querySelector("#outputText2");
+
+//cappuccino class that extends the coffee class
+class Cappuccino extends Coffee {
+    //variables
+    flavour; //string
+    hasWhippedCream; //bool
+
+    //constructor
+    constructor(size, isDecaf, flavour, hasWhippedCream) {
+        //size and isDecaf are part of Coffee's constructor
+        super(size, isDecaf);
+
+        //set unique variables
+        this.flavour = flavour;
+        this.hasWhippedCream = hasWhippedCream;
+    }
+
+    //description
+    cappuccinoDesc() {
+        return `A ${this.size}, ${this.isDecaf ? "decaf" : "caffeinated"} ${this.flavour} cappuccino${this.hasWhippedCream ? ", with whipped cream ontop" : ""}.`;
+    }
+}
+
+//create objects
+let zechsCappuccino = new Cappuccino("large", false, "French-Vanilla", false);
+let jermasCappuccino = new Cappuccino("compact", true, "Hazelnut", true);
+
+//run the inherited serveIt functions
+zechsCappuccino.serveIt();
+jermasCappuccino.serveIt();
+
+//display the cappuccino descriptions on the page
+outputText.textContent = "Zech: " + zechsCappuccino.cappuccinoDesc();
+outputText2.textContent = "Jerma: " + jermasCappuccino.cappuccinoDesc();
