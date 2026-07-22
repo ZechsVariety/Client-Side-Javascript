@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>AWESOMER PIZZA!!!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="css/normalize.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <script src="js/pizza.js" defer></script>
+    </head>
+
+    <body>
+        <h1>AWESOMER PIZZA!!!</h1>
+        <h2>Where pizza is made in an even more awesome way</h2>
+
+        <!-- NOTE: this form was adapted from one of my previous assignmented in HTML-CSS-JS fundamentals -->
+        <form action="" method="post">
+            <!-- pizza customization -->
+            <fieldset>
+                <legend>Customize Your Pizza!</legend>
+
+                <!-- size: resizes the pizza visual accordingly -->
+                <div>
+                    <h4>Size</h4>
+                    
+                    <input type="radio" name="size" id="small" value="small" />
+                    <label for="small">Small</label>
+                    
+                    <!-- default -->
+                    <input type="radio" name="size" id="medium" value="medium" checked/>
+                    <label for="medium">Medium</label>
+                    
+                    <input type="radio" name="size" id="large" value="large" />
+                    <label for="large">Large</label>
+
+                    <input type="radio" name="size" id="party" value="party" />
+                    <label for="party">PARTY!!</label>
+                </div>
+
+                <!-- toppings: adds these ontop of the pizza visual -->
+                <div>
+                    <h4>Toppings</h4>
+
+                    <input type="checkbox" name="toppings[]" id="toppings1" value="cheese" checked/>
+                    <label for="toppings1">Cheese</label>
+
+                    <input type="checkbox" name="toppings[]" id="toppings2" value="pepperoni" />
+                    <label for="toppings2">Pepperoni</label>
+
+                    <input type="checkbox" name="toppings[]" id="toppings3" value="potatoes" />
+                    <label for="toppings3">Potatoes</label>   
+
+                    <input type="checkbox" name="toppings[]" id="toppings4" value="spinach" />
+                    <label for="toppings4">Spinach</label>
+                    
+                    <input type="checkbox" name="toppings[]" id="toppings5" value="pickles" />
+                    <label for="toppings5">Pickles</label>
+
+                    <input type="checkbox" name="toppings[]" id="toppings6" value="egg" />
+                    <label for="toppings6">Egg</label>
+
+                    <input type="checkbox" name="toppings[]" id="toppings7" value="carrots" />
+                    <label for="toppings7">Carrots</label>
+
+                    <input type="checkbox" name="toppings[]" id="toppings8" value="sausage" />
+                    <label for="toppings8">Sausage</label>
+                </div>
+
+                <!-- crust type: changes the main pizza image below all the toppings -->
+                <div>
+                    <h4>Crust Type</h4>
+
+                    <select name="crust" id="crust">
+                        <optgroup label="Crusts">
+                            <option value="Regular">Regular</option>
+                            <option value="Thin">Thin Crust</option>
+                            <option value="Deep">Deep Dish</option>
+                            <option value="GlutenFree">Gluten Free</option>
+                        </optgroup>
+                        <optgroup label="Special">
+                            <option value="Cheese">Cheese Injection</option>
+                            <option value="Lettuce">Lettuce Crust</option>
+                            <option value="Evil">Evil Crust</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div>
+                    <!-- this div will contain the pizza visuals to the right of the form, which will either auto update whenever a form value is changed, or update when a "generate pizza" button is pressed -->
+                </div>
+            </fieldset>
+
+            <!-- order info (i may simplify this later because it's not really needed) -->
+            <fieldset>
+                <legend>Order Info</legend>
+
+                <div>
+                    <label for="orderType">Order Type</label>
+                    
+                    <input type="radio" name="orderType" id="delivery" value="delivery" checked/>
+                    <label for="delivery">Delivery</label>
+
+                    <input type="radio" name="orderType" id="dineIn" value="dineIn" />
+                    <label for="dineIn">Dine-in</label>
+                    
+                    <input type="radio" name="orderType" id="takeout" value="takeout" />
+                    <label for="takeout">Takeout</label>
+                </div>
+
+                <br />
+
+                <div>
+                    <label for="name">Name*</label>
+                    <input type="text" name="name" id="name" required />
+                </div>
+
+                <div>
+                    <label for="address">Address</label>
+                    <input type="text" name="address" id="address"/>
+                    <label for="address">* Required for delivery</label>
+                </div>
+
+                <br />
+
+                <div>
+                    <label for="phone">Phone*</label>
+                    <input id="phone" type="tel" name="phone" required/>
+                </div>
+
+                <div>
+                    <label for="email">Email</label>
+                    <input id="email" type="email" name="email" />
+                    <input id="consent" type="checkbox" />
+                    <label for="consent">I'd like to recieve promotional emails about cool new pizzas</label>
+                </div>
+            </fieldset>
+
+            <button type="submit">Place Order</button>
+        </form>
+    </body>
+    <footer>
+        <p>DYNAMICALLY ADD STUFF HERE</p>
+    </footer>
+</html>
