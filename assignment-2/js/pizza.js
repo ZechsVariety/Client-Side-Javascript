@@ -8,13 +8,14 @@ const errorDisplay = document.getElementById("error");
 //variables
 
 //updated when form is submitted
-let size, crust;
+let size, crust, customerName;
 let toppings = [];
 
-//these are set at page load and used for validation. (ie: form submissions must match these, otherwise it's assumed that the person edited the html with inspect element)
-const availableSizes = document.querySelectorAll('input[name="size"]');
-const availableToppings = document.querySelectorAll('input[name="toppings[]"]');
-const availableCrusts = document.querySelectorAll("#crust");
+//for validation
+const availableSizes = ["Small", "Medium", "Large", "Party"];
+//"Secret" is an intended secret value with its own sprite
+const availableToppings = ["Cheese", "Pepperoni", "Spinach", "Pickles", "Egg", "Carrots", "Sausage", "Secret"];
+const availableCrusts = ["Regular", "Thin", "Deep", "Evil"];
 
 let error;
 
@@ -31,25 +32,44 @@ function getFormData() {
     //thank you Parthik Gosar for the code to find the currently selected radio button: https://stackoverflow.com/a/15839451
     size = document.querySelector('input[name="size"]:checked');
 
-    //check if size option exists in the availableSizes array
-    for(let i = 0; i < availableSizes.length; i++) {
-        if(availableSizes[i].value === size.value) {
-            console.log("success");
-            break;
-        }
-
-        if(i == availableSizes.length - 1) {
-            error = "Invalid size.";
-            console.log("invalid size");
-            return;
-        }
-    }
-
     //retrieve all selected topping nodes
     toppings = document.querySelectorAll('input[name="toppings[]"]:checked');
 
     //retrieve selected crust node
     crust = document.getElementById("crust");
+
+    //retrieve name
+    customerName = document.getElementById("name");
+
+    //VALIDATION
+
+    //check if size exists in the availableSizes array
+    if(!availableSizes.includes(size.value)) {
+        error = `"${size.value}" is not a valid size.`;
+        return;
+    }
+
+    //check if all toppings exists in the availableToppings array
+    toppings.forEach(topping => {
+        if(!availableToppings.includes(topping.value)) {
+            error = `"${topping.value}" is not a valid topping.`;
+            return;
+        }
+    });
+
+    //check if crust exists in the availableCrusts array
+    if(!availableCrusts.includes(crust.value)) {
+        error = `"${crust.value}" is not a valid crust type.`;
+        return;
+    }
+
+    console.log(customerName.value);
+
+    //check if name is blank
+    if(customerName.value == null || customerName.value == "") {
+        error = `Please enter a name.`;
+        return;
+    }
 }
 
 submitButton.addEventListener('click', function(event) {
@@ -59,7 +79,7 @@ submitButton.addEventListener('click', function(event) {
 
     errorDisplay.textContent = error;
 
-    if(error != null || "") {
+    if(error == null || error == "") {
         return;
     }
 });
