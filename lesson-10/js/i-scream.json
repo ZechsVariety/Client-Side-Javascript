@@ -13,7 +13,8 @@
                 "Chocolate Chips",
                 "Milk and whatnot"
             ],
-            "image": "https://zechsvariety.github.io/Client-Side-Javascript/lesson-10/images/chocolate-mint.svg"
+            "image": "https://zechsvariety.github.io/Client-Side-Javascript/lesson-10/images/chocolate-mint.svg",
+            "rating": 4
         },
         {
             "name": "Peach Mango",
@@ -24,7 +25,45 @@
                 "Mango",
                 "Sorbet stuff"
             ],
-            "image": "https://zechsvariety.github.io/Client-Side-Javascript/lesson-10/images/peach-mango.svg"
+            "image": "https://zechsvariety.github.io/Client-Side-Javascript/lesson-10/images/peach-mango.svg",
+            "rating": 3
+        },
+        {
+            "name": "Strawberry-Sprinkle Froyo",
+            "calories": 985,
+            "type": "frozen-yogurt",
+            "ingredients": [
+                "Strawberry",
+                "Chocolate Dip",
+                "Rainbow Sprinkles",
+                "Yogurt"
+            ],
+            "image": "https://zechsvariety.github.io/Client-Side-Javascript/lesson-10/images/strawberry-sprinkle.svg",
+            "rating": 3.5
+        },
+        {
+            "name": "Green Surprise",
+            "calories": 230,
+            "type": "ice-cream",
+            "ingredients": [
+                "Acid",
+                "Candy",
+                "Milk and whatnot"
+            ],
+            "image": "https://zechsvariety.github.io/Client-Side-Javascript/lesson-10/images/ice-cream-xtra1.svg",
+            "rating": 0
+        },
+        {
+            "name": "Cookie Dough",
+            "calories": 500,
+            "type": "ice-cream",
+            "ingredients": [
+                "Cookie Dough",
+                "Chocolate Chips",
+                "Milk and whatnot"
+            ],
+            "image": "https://zechsvariety.github.io/Client-Side-Javascript/lesson-10/images/ice-cream-xtra2.svg",
+            "rating": 3
         }
     ]
 }
