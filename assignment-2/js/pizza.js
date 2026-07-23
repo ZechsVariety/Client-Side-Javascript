@@ -146,7 +146,7 @@ class Pizza {
         }
 
         //return the description
-        return `${this.customerName.toLowerCase()}'s ${this.size.toLowerCase()}-size pizza, with ${toppingsList} on top, and with a ${this.crust.toLowerCase()} crust.`;
+        return `${this.customerName}'s ${this.size.toLowerCase()}-size pizza, with ${toppingsList} on top, and with a ${this.crust.toLowerCase()} crust.`;
     }
 
     //create the pizza visual. returns a div element that contains all the images
@@ -199,6 +199,8 @@ class Pizza {
             toppingImgs[i].classList.add("pizzaImg");
             group.appendChild(toppingImgs[i]);
         }
+
+        //group.style.left = `${200-imgSize}vw`;
 
         //return the parent div containing all the images
         return group;

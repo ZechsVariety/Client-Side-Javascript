@@ -1,11 +1,43 @@
-.pizza {
-    /* fixes positioning for some reason */
-    position: relative;
+body {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+
+    background-color: rgb(255, 223, 164);
+}
+main {
+    display: flex;
+}
+
+form {
+    background-color: rgb(255, 205, 111);
+
+    width: 60%;
+}
+
+aside {
+    background-color: rgb(255, 205, 111);
+
+    width: 50%;
+
+    padding: 5px;
+}
+
+#pizza {
+    margin: auto;
+
+    background-color: aliceblue;
 }
 
 .pizzaImg {
     /* overlap each img */
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 27vh;
+    left: 54vw;
+
+    /* prevent antialiasing (which caused pizza to be blurry at large sizes) https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/image-rendering */
+    image-rendering: crisp-edges;
+
+    margin: auto;
+    text-align: center;
 }

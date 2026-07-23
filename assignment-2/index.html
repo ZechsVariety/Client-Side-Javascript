@@ -10,89 +10,96 @@
     </head>
 
     <body>
-        <h1>AWESOMER PIZZA!!!</h1>
-        <h2>Where pizza is made in an even more awesome way</h2>
+        <header>
+            <h1>AWESOMER PIZZA!!!</h1>
+            <h2>Where pizza is made in an even more awesome way</h2>
+        </header>
 
-        <!-- NOTE: this form was adapted from one of my previous assignmented in HTML-CSS-JS fundamentals -->
-        <form action="" method="post">
-            <h3>Customize Your Pizza!</h3>
+        <main>
+            <!-- NOTE: this form was adapted from one of my previous assignmented in HTML-CSS-JS fundamentals -->
+            <form action="" method="post">
+                <h3>Customize Your Pizza!</h3>
 
-            <!-- size: resizes the pizza visual accordingly -->
-            <div>
-                <h4>Size</h4>
-                
-                <input type="radio" name="size" id="small" value="Small" />
-                <label for="small">Small</label>
-                
-                <!-- default -->
-                <input type="radio" name="size" id="medium" value="Medium" checked/>
-                <label for="medium">Medium</label>
-                
-                <input type="radio" name="size" id="large" value="Large" />
-                <label for="large">Large</label>
+                <!-- size: resizes the pizza visual accordingly -->
+                <div>
+                    <h4>Size</h4>
+                    
+                    <input type="radio" name="size" id="small" value="Small" />
+                    <label for="small">Small</label>
+                    
+                    <!-- default -->
+                    <input type="radio" name="size" id="medium" value="Medium" checked/>
+                    <label for="medium">Medium</label>
+                    
+                    <input type="radio" name="size" id="large" value="Large" />
+                    <label for="large">Large</label>
 
-                <input type="radio" name="size" id="party" value="Party" />
-                <label for="party">PARTY!!</label>
-            </div>
+                    <input type="radio" name="size" id="party" value="Party" />
+                    <label for="party">PARTY!!</label>
+                </div>
 
-            <!-- toppings: adds these ontop of the pizza visual -->
-            <div>
-                <h4>Toppings</h4>
+                <!-- toppings: adds these ontop of the pizza visual -->
+                <div>
+                    <h4>Toppings</h4>
 
-                <input type="checkbox" name="toppings[]" id="toppings1" value="Cheese" checked/>
-                <label for="toppings1">Cheese</label>
+                    <input type="checkbox" name="toppings[]" id="toppings1" value="Cheese" checked/>
+                    <label for="toppings1">Cheese</label>
 
-                <input type="checkbox" name="toppings[]" id="toppings4" value="Spinach" />
-                <label for="toppings4">Spinach</label>
+                    <input type="checkbox" name="toppings[]" id="toppings4" value="Spinach" />
+                    <label for="toppings4">Spinach</label>
 
-                <input type="checkbox" name="toppings[]" id="toppings2" value="Pepperoni" />
-                <label for="toppings2">Pepperoni</label>
-                
-                <input type="checkbox" name="toppings[]" id="toppings5" value="Pickles" />
-                <label for="toppings5">Pickles</label>
+                    <input type="checkbox" name="toppings[]" id="toppings2" value="Pepperoni" />
+                    <label for="toppings2">Pepperoni</label>
+                    
+                    <input type="checkbox" name="toppings[]" id="toppings5" value="Pickles" />
+                    <label for="toppings5">Pickles</label>
 
-                <input type="checkbox" name="toppings[]" id="toppings6" value="Egg" />
-                <label for="toppings6">Egg</label>
+                    <input type="checkbox" name="toppings[]" id="toppings6" value="Egg" />
+                    <label for="toppings6">Egg</label>
 
-                <input type="checkbox" name="toppings[]" id="toppings7" value="Carrots" />
-                <label for="toppings7">Carrots</label>
+                    <input type="checkbox" name="toppings[]" id="toppings7" value="Carrots" />
+                    <label for="toppings7">Carrots</label>
 
-                <input type="checkbox" name="toppings[]" id="toppings8" value="Sausage" />
-                <label for="toppings8">Sausage</label>
+                    <input type="checkbox" name="toppings[]" id="toppings8" value="Sausage" />
+                    <label for="toppings8">Sausage</label>
 
-                <!-- also "Secret" only accessible with inspect element -->
-            </div>
+                    <!-- also "Secret" only accessible with inspect element -->
+                </div>
 
-            <!-- crust type: changes the main pizza image below all the toppings -->
-            <div>
-                <h4>Crust Type</h4>
+                <!-- crust type: changes the main pizza image below all the toppings -->
+                <div>
+                    <h4>Crust Type</h4>
 
-                <select name="crust" id="crust">
-                    <option value="Regular">Regular</option>
-                    <option value="Thin">Thin Crust</option>
-                    <option value="Deep">Deep Dish</option>
-                    <option value="Evil">Evil Crust</option>
-                </select>
-            </div>
+                    <select name="crust" id="crust">
+                        <option value="Regular">Regular</option>
+                        <option value="Thin">Thin Crust</option>
+                        <option value="Deep">Deep Dish</option>
+                        <option value="Evil">Evil Crust</option>
+                    </select>
+                </div>
 
-            <div>
-                <label for="name">Name*</label>
-                <input type="text" name="name" id="name" required />
-            </div>
+                <div>
+                    <h4>Name*</h4>
+                    <input type="text" name="name" id="name" required />
+                </div>
 
-            <button type="submit" id="submit">Place Order</button>
+                <br />
 
-            <div>
-                <h4 id="error"></h4>
-            </div>
-        </form>
+                <button type="submit" id="submit">Place Order</button>
 
-        <div>
-            <div id="visuals"></div>
-            <p id="desc"></p>
-        </div>
+                <div>
+                    <h4 id="error"></h4>
+                </div>
+            </form>
+
+            <aside>
+                <div id="visuals"></div>
+                <h4 id="desc"></h4>
+            </aside>
+        </main>
+
+        <footer>
+            <p>DYNAMICALLY ADD STUFF HERE</p>
+        </footer>
     </body>
-    <footer>
-        <p>DYNAMICALLY ADD STUFF HERE</p>
-    </footer>
 </html>
