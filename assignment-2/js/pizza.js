@@ -11,7 +11,7 @@ const errorDisplay = document.getElementById("error");
 let size, crust, customerName;
 let toppings = [];
 
-//for validation
+//allowed values for form validation
 const availableSizes = ["Small", "Medium", "Large", "Party"];
 //"Secret" is an intended secret value with its own sprite
 const availableToppings = ["Cheese", "Pepperoni", "Spinach", "Pickles", "Egg", "Carrots", "Sausage", "Secret"];
@@ -63,13 +63,13 @@ function getFormData() {
         return;
     }
 
-    console.log(customerName.value);
-
     //check if name is blank
     if(customerName.value == null || customerName.value == "") {
         error = `Please enter a name.`;
         return;
     }
+
+    //if site reaches this point, it means there were no errors.
 }
 
 submitButton.addEventListener('click', function(event) {
@@ -79,7 +79,62 @@ submitButton.addEventListener('click', function(event) {
 
     errorDisplay.textContent = error;
 
-    if(error == null || error == "") {
+    //stop if there's an error
+    if(error != null && error != "") {
         return;
     }
+
+    //create pizza object
+    let pizza = new Pizza(size, toppings, crust, customerName);
+
+    console.log(pizza.description());
 });
+
+//pizza class
+class Pizza {
+    size;
+    toppings = [];
+    crust;
+    customerName;
+
+    constructor(size, toppings, crust, customerName) {
+        this.size = size.value;
+
+        //add each element individually so that this is a proper copy of the toppings array
+        for(let i = 0; i < toppings.length; i++) {
+            this.toppings[i] = toppings[i].value;
+        }
+
+        this.crust = crust.value;
+        this.customerName = customerName.value;
+    }
+
+    //returns string
+    description() {
+        //toppings list portion of the description dynamically adds commas, "and", and "nothing" depending on how many toppings are selected
+        let toppingsList = "";
+        //if no toppings are selected, the topping part should say "nothing"
+        if(this.toppings.length == 0) {
+            toppingsList = "nothing";
+        }
+        //otherwise
+        else {
+            //look through each selected topping
+            for(let i = 0; i < this.toppings.length; i++) {
+                //if this is the last element, add "and" beforehand (unless it is the only element in the list)
+                if(i == this.toppings.length - 1 && this.toppings.length > 1) {
+                    toppingsList += " and ";
+                }
+                //otherwise, if this isn't the first element, add a comma beforehand
+                else if(i != 0) {
+                    toppingsList += ", ";
+                }
+
+                toppingsList += this.toppings[i];
+            }
+        }
+
+        //return the description
+        return `${this.customerName}'s ${this.size}-size pizza, with ${toppingsList} on top, and with a ${this.crust} crust.`;
+    }
+}
