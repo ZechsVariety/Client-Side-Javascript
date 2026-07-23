@@ -16,7 +16,7 @@ let toppings = [];
 //allowed values for form validation
 const availableSizes = ["Small", "Medium", "Large", "Party"];
 //"Secret" is an intended secret value with its own sprite
-const availableToppings = ["Cheese", "Pepperoni", "Spinach", "Pickles", "Egg", "Carrots", "Sausage", "Secret"];
+const availableToppings = ["Cheese", "Spinach", "Pepperoni", "Pickles", "Egg", "Carrots", "Sausage", "Secret"];
 const availableCrusts = ["Regular", "Thin", "Deep", "Evil"];
 
 let error;
