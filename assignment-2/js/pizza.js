@@ -1,5 +1,6 @@
 //objects
 const footerText = document.querySelector("footer p");
+const visualsDiv = document.getElementById("visuals");
 const pizzaDesc = document.getElementById("desc");
 
 const form = document.querySelector('form');
@@ -89,6 +90,15 @@ submitButton.addEventListener('click', function(event) {
     let pizza = new Pizza(size, toppings, crust, customerName);
 
     pizzaDesc.textContent = pizza.description();
+
+    //remove any pizza visuals that already exist
+    let child = visualsDiv.firstChild;
+    if(child) {
+        visualsDiv.removeChild(child);
+    }
+
+    //create and append new pizza visual
+    visualsDiv.appendChild(pizza.buildPizza());
 });
 
 //pizza class
@@ -137,5 +147,55 @@ class Pizza {
 
         //return the description
         return `${this.customerName.toLowerCase()}'s ${this.size.toLowerCase()}-size pizza, with ${toppingsList} on top, and with a ${this.crust.toLowerCase()} crust.`;
+    }
+
+    //create the pizza visual. returns a div element that contains all the images
+    buildPizza() {
+        //contains all the images
+        let group = document.createElement("div");
+
+        //determine the image size (px)
+        let imgSize;
+        switch (this.size) {
+            case "Small":
+                imgSize = 100;
+                break;
+
+            case "Medium":
+                imgSize = 128;
+                break;
+            
+            case "Large":
+                imgSize = 170;
+                break;
+            
+            case "Party":
+                imgSize = 300;
+                break;
+        
+            default:
+                imgSize = 128;
+                break;
+        }
+
+        //create crust image and set its image, size, and alt text, and append it to the group
+        let crustImg = document.createElement("img");
+        crustImg.src = `./images/Crust${this.crust}.png`;
+        crustImg.width = imgSize;
+        crustImg.alt = `${this.crust} crust image`;
+        group.appendChild(crustImg);
+
+        //create each topping image and set their images, sizes, and alt texts, and append them all to the group
+        let toppingImgs = [];
+        for(let i = 0; i < this.toppings.length; i++) {
+            toppingImgs[i] = document.createElement("img");
+            toppingImgs[i].src = `./images/Topping${this.toppings[i]}.png`;
+            toppingImgs[i].width = imgSize;
+            toppingImgs[i].alt = `${this.toppings[i]} topping image`;
+            group.appendChild(toppingImgs[i]);
+        }
+
+        //return the parent div containing all the images
+        return group;
     }
 }
