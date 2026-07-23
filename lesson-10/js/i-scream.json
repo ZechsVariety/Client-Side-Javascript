@@ -1,0 +1,30 @@
+{
+    "companyName": "Jerma Inc.",
+    "headOffice": "New Vegas",
+    "established": 1985,
+    "active": true,
+    "topFlavours": [
+        {
+            "name": "Mint Chocolate-Chip",
+            "calories": 200,
+            "type": "ice-cream",
+            "ingredients": [
+                "Mint",
+                "Chocolate Chips",
+                "Milk and whatnot"
+            ],
+            "image": "https://zechsvariety.github.io/Client-Side-Javascript/lesson-10/images/chocolate-mint.svg"
+        },
+        {
+            "name": "Peach Mango",
+            "calories": 350,
+            "type": "sorbet",
+            "ingredients": [
+                "Peach",
+                "Mango",
+                "Sorbet stuff"
+            ],
+            "image": "https://zechsvariety.github.io/Client-Side-Javascript/lesson-10/images/peach-mango.svg"
+        }
+    ]
+}
