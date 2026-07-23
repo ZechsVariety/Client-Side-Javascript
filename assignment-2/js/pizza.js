@@ -1,5 +1,6 @@
 //objects
 const footerText = document.querySelector("footer p");
+const pizzaDesc = document.getElementById("desc");
 
 const form = document.querySelector('form');
 const submitButton = document.getElementById("submit");
@@ -87,7 +88,7 @@ submitButton.addEventListener('click', function(event) {
     //create pizza object
     let pizza = new Pizza(size, toppings, crust, customerName);
 
-    console.log(pizza.description());
+    pizzaDesc.textContent = pizza.description();
 });
 
 //pizza class
@@ -130,11 +131,11 @@ class Pizza {
                     toppingsList += ", ";
                 }
 
-                toppingsList += this.toppings[i];
+                toppingsList += this.toppings[i].toLowerCase();
             }
         }
 
         //return the description
-        return `${this.customerName}'s ${this.size}-size pizza, with ${toppingsList} on top, and with a ${this.crust} crust.`;
+        return `${this.customerName.toLowerCase()}'s ${this.size.toLowerCase()}-size pizza, with ${toppingsList} on top, and with a ${this.crust.toLowerCase()} crust.`;
     }
 }
