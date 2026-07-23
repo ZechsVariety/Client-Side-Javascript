@@ -2,6 +2,7 @@
 const footerText = document.querySelector("footer p");
 const visualsDiv = document.getElementById("visuals");
 const pizzaDesc = document.getElementById("desc");
+const pizzaMessage = document.getElementById("message");
 
 const form = document.querySelector('form');
 const submitButton = document.getElementById("submit");
@@ -90,6 +91,7 @@ submitButton.addEventListener('click', function(event) {
     let pizza = new Pizza(size, toppings, crust, customerName);
 
     pizzaDesc.textContent = pizza.description();
+    pizzaMessage.textContent = pizza.message();
 
     //remove any pizza visuals that already exist
     let child = visualsDiv.firstChild;
@@ -147,6 +149,33 @@ class Pizza {
 
         //return the description
         return `${this.customerName}'s ${this.size.toLowerCase()}-size pizza, with ${toppingsList} on top, and with a ${this.crust.toLowerCase()} crust.`;
+    }
+
+    //print a silly custom message depending on what you selected
+    message() {
+        //this is just a series of conditions with corresponding messages returned, and since it's a series of if elses, it's prioritized from top to bottom. each condition is pretty self explanatory.
+        if(this.toppings.includes("Secret"))
+            return "OH MY GOD IT'S ALIVE!!";
+        else if(this.crust == "Evil" && this.toppings.includes("Pickles") && this.toppings.includes("Egg") && this.toppings.includes("Carrots"))
+            return "You're actually creating a virus at this point.";
+        else if(this.crust == "Evil")
+            return `Looks evil... Eat it fast ${this.customerName}.`;
+        else if(this.toppings.length >= 7 && this.size == "Party" && this.crust == "Deep")
+            return `This better be a big party, holy.`;
+        else if(this.toppings.length >= 7 && this.size == "Party")
+            return `Yeah, good luck eating all that, ${this.customerName}.`;
+        else if(this.toppings.length > 5)
+            return "That's just too many toppings, man.";
+        else if(this.toppings.length > 3)
+            return "That's a lotta toppings!";
+        else if(this.toppings.includes("Pickles") || this.toppings.includes("Egg") || this.toppings.includes("Carrots"))
+            return `Looks disgusting. You're a disgusting freak, ${this.customerName}.`;
+        else if(this.size == "Party")
+            return "It's huge!!";
+        else if(!this.toppings.includes("Cheese"))
+            return "You're going to hell (unless you're vegan or lactose intolerant)";
+        else
+            return "Looks good!";
     }
 
     //create the pizza visual. returns a div element that contains all the images
