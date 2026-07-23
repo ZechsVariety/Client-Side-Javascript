@@ -1,0 +1,11 @@
+.pizza {
+    /* fixes positioning for some reason */
+    position: relative;
+}
+
+.pizzaImg {
+    /* overlap each img */
+    position: absolute;
+    top: 0;
+    left: 0;
+}

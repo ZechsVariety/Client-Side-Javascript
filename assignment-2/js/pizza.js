@@ -150,9 +150,12 @@ class Pizza {
     }
 
     //create the pizza visual. returns a div element that contains all the images
+    //NOTE: each img's layering (zindex) depends on when it is created, so I didn't have to manually update the zindexes like I originally thought
     buildPizza() {
         //contains all the images
         let group = document.createElement("div");
+        //thank you Peter Boughton for the solution to adding a class to an element with JS: https://stackoverflow.com/a/196038
+        group.classList.add("pizza");
 
         //determine the image size (px)
         let imgSize;
@@ -178,20 +181,22 @@ class Pizza {
                 break;
         }
 
-        //create crust image and set its image, size, and alt text, and append it to the group
+        //create crust image and set its image, size, and alt text, add it to pizzaImg class, and append it to the group
         let crustImg = document.createElement("img");
         crustImg.src = `./images/Crust${this.crust}.png`;
         crustImg.width = imgSize;
         crustImg.alt = `${this.crust} crust image`;
+        crustImg.classList.add("pizzaImg");
         group.appendChild(crustImg);
 
-        //create each topping image and set their images, sizes, and alt texts, and append them all to the group
+        //create each topping image and set their images, sizes, and alt texts, add it to pizzaImg class, and append them all to the group
         let toppingImgs = [];
         for(let i = 0; i < this.toppings.length; i++) {
             toppingImgs[i] = document.createElement("img");
             toppingImgs[i].src = `./images/Topping${this.toppings[i]}.png`;
             toppingImgs[i].width = imgSize;
             toppingImgs[i].alt = `${this.toppings[i]} topping image`;
+            toppingImgs[i].classList.add("pizzaImg");
             group.appendChild(toppingImgs[i]);
         }
 
