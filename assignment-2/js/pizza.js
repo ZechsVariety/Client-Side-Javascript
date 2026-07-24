@@ -156,6 +156,16 @@ class Pizza {
         //this is just a series of conditions with corresponding messages returned, and since it's a series of if elses, it's prioritized from top to bottom. each condition is pretty self explanatory.
         if(this.toppings.includes("Secret"))
             return "OH MY GOD IT'S ALIVE!!";
+        //names
+        else if(this.customerName.toLowerCase() == "jerma")
+            return "Dude Jerma welcome to the site I'm a big fan I hope you enjoy the site!";
+        else if(this.customerName.toLowerCase() == "luigi")
+            return "Dude Luigi from Mario??? No way!!";
+        else if(this.customerName.toLowerCase() == "pizza")
+            return "Cannibal.";
+        else if(this.customerName.toLowerCase() == "secret")
+            return "Try editing the html a lil >:)";
+        //other conditions
         else if(this.crust == "Evil" && this.toppings.includes("Pickles") && this.toppings.includes("Egg") && this.toppings.includes("Carrots"))
             return "You're actually creating a virus at this point.";
         else if(this.crust == "Evil")
@@ -174,6 +184,7 @@ class Pizza {
             return "It's huge!!";
         else if(!this.toppings.includes("Cheese"))
             return "You're going to hell (unless you're vegan or lactose intolerant)";
+        //default
         else
             return "Looks good!";
     }
