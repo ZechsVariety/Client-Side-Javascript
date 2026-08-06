@@ -15,7 +15,7 @@
 // STEP 2: Set the base URL for the Claude API
 const baseURL = "https://georgian.polaristechservices.com";
 // STEP 3: Set your student API key (student ID)
-const studentApiKey = "";
+const studentApiKey = "200639774";
 // STEP 4: Set the maximum tokens for API requests
 const maxTokens = 1000;
 
@@ -25,12 +25,24 @@ const sendMessageBtn = document.querySelector("#send-message");
 const checkUsageBtn = document.querySelector("#check-usage");
 const results = document.querySelector("#results");
 
+//lab references
+const lab = document.querySelector("#lab");
+const labTextInput = document.querySelector("#labTextArea");
+const labBtn = document.querySelector("#labButton");
+const labResults = document.querySelector("#labResults");
+
+//used to store the conversation
+let labConvo = [];
+
 /* STEP 6: Add event listeners for all interactive elements */
 // STEP 6a: Send message button
 sendMessageBtn.addEventListener("click", sendChatMessage);
 
 // STEP 6b: Check usage button
 checkUsageBtn.addEventListener("click", checkTokenUsage);
+
+//lab button event listener
+labBtn.addEventListener("click", sendSecondChatMessage);
 
 /* STEP 7: Create the checkTokenUsage function */
 function checkTokenUsage() {
@@ -87,6 +99,9 @@ function sendChatMessage() {
         }]
     }
 
+    //add the user input to the labConvo array
+    labConvo.push(userInput);
+
     // STEP 8d: Make the API request using fetch()
     fetch(url, {
         method: "POST",
@@ -98,7 +113,7 @@ function sendChatMessage() {
     })
     // STEP 8e: Handle the response
     .then(response => {
-        return response.json;
+        return response.json();
     })
     .then(json => {
         displayMessage(json);
@@ -112,7 +127,78 @@ function displayMessage(json) {
     let para = document.createElement("p");
     para.textContent = json.content[0].text;
     results.appendChild(para);
+
+    //add the ai's response to the labConvo array
+    labConvo.push(json.content[0].text);
+
+    //reveal the lab section (thank you Vahe Yavrumian: https://stackoverflow.com/a/61702935)
+    lab.style.display = "block";
 }
+
+function sendSecondChatMessage() {
+    let userInput = labTextInput.value;
+
+    let url = `${baseURL}/api/claude/messages`;
+
+    //prepare request, using previous conversation data and the new input
+    //https://platform.claude.com/docs/en/build-with-claude/working-with-messages
+    let body = {
+        "model": "claude-sonnet-5",
+        "max_tokens": maxTokens,
+        "messages": [
+            { "role": "user", "content": labConvo[0] },
+            { "role": "assistant", "content": labConvo[1] },
+            { "role": "user", "content": userInput }
+        ]
+    }
+
+    //failed attempt at populating json object dynamically
+    /*
+    //prepare request
+    let body = {
+        "model": "claude-sonnet-5",
+        "max_tokens": maxTokens,
+        "messages": [{ "role": "user", "content": userInput }] //will be modified programatically
+    }
+
+    labConvo.push(userInput);
+
+    for(let i = 0; i < labConvo.length; i++) {
+        body.messages[i].role = i % 2 == 0 ? "assistant" : "user";
+        body.messages[i].content = labConvo[i];
+    }
+
+    console.log(body.json);
+    */
+
+    //make api request
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "X-Student-API-Key": studentApiKey,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(json => {
+        displayLabMessage(json);
+    })
+}
+
+function displayLabMessage(json) {
+    console.log(json);
+
+    //display result on page
+    let para = document.createElement("p");
+    para.textContent = json.content[0].text;
+    labResults.appendChild(para);
+
+    labConvo.push(json.content[0].text);
+}
+
 // LAB EXTENSION: Multi-Message Chat Feature
 // After completing the basic implementation, extend the functionality to support conversation history:
 
