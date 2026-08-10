@@ -6,12 +6,14 @@ const videoSection = document.querySelector("section");
 const creatorName = "Zecheriah Ferguson";
 const creatorStudentID = 200639774;
 
+//modifiers
+const descCharacterCount = 100;
+
 //dynamically add name and student id to footer
 footerText.textContent = `Demonstration by: ${creatorName} - ${creatorStudentID}`;
 
 //this url was generated using https://developers.google.com/youtube/v3/docs/playlistItems/list
-//TODO: change max results to be a variable rather than a hardcoded 15
-fetch("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=15&playlistId=PLOSODkKpkvaQQd0AFDbe2vNvfRhhLAz6a&key=AIzaSyCSOE1xMZVew7RUii8E24JSRfXLQi4C9Gs")
+fetch("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=PLOSODkKpkvaQQd0AFDbe2vNvfRhhLAz6a&key=AIzaSyCSOE1xMZVew7RUii8E24JSRfXLQi4C9Gs")
     //get response
     .then(response => {
         console.log(response);
@@ -32,11 +34,25 @@ fetch("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxR
 
         //run through each video that was retrieved
         json.items.forEach(video => {
+            //retrieve relevant values
+            let videoUrl = `https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`;
+            let rankingNum = video.snippet.position + 1;
+            let thumbnail = video.snippet.thumbnails.standard.url;
+            let title = video.snippet.title;
+
+            let fullDesc = video.snippet.description;
+            //truncate the description so that it doesn't take up a huge portion of the page
+            let truncatedDesc = fullDesc.substring(0, descCharacterCount) + "...";
+
+            //update visually
             videoSection.innerHTML += 
-            `<a target="_blank" href="https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}">` + //make all child elements clickable (redirects to video url in new tab)
-                `<img src="${video.snippet.thumbnails.standard.url}" />` + //show thumbnail image
-                `<h3>${video.snippet.title}</h3>` + //add video title as an h3 element
-            `</a>`;
+            `<a target="_blank" href="${videoUrl}">` + //make all child elements clickable (redirects to video url in new tab)
+                `<img src="${thumbnail}" />` + //show thumbnail image
+                `<h3>#${rankingNum}: ${title}</h3>` + //display ranking and title as an h3
+            `</a>` +
+            `<div>` +
+                `<h4>Description:</h4><p>${truncatedDesc}</p>` +
+            `</div>`;
         });
     })
     //error handling (for if you have no internet, or if response throws an error indicating that youtube servers must be down)
