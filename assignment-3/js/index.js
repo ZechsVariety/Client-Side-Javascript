@@ -18,7 +18,8 @@ fetch("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxR
 
         //true/false if response is good
         if(!response.ok) {
-            throw new Error("ERROR: Could not fetch videos!");
+            //videoSection.innerHTML = "<p>ERROR: Could not fetch videos!</p>";
+            throw new Error("Could not fetch videos");
         }
 
         return response.json();
@@ -27,10 +28,15 @@ fetch("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxR
     .then(json => {
         console.log(json);
 
+        //clear videoSection. "loading..." is displayed until this occurs
+        videoSection.innerHTML = "";
+
         //run through each video that was retrieved
         json.items.forEach(video => {
-            //add video title as an h3 element
-            videoSection.innerHTML += `<h3>${video.snippet.title}</h3>`;
+            videoSection.innerHTML += 
+            `<a href="https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}">` + //make all child elements clickable (redirects to video url)
+                `<h3>${video.snippet.title}</h3>` + //add video title as an h3 element
+            `</a>`;
         });
     }
 );
