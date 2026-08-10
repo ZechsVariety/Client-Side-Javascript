@@ -18,7 +18,6 @@ fetch("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxR
 
         //true/false if response is good
         if(!response.ok) {
-            //videoSection.innerHTML = "<p>ERROR: Could not fetch videos!</p>";
             throw new Error("Could not fetch videos");
         }
 
@@ -39,5 +38,11 @@ fetch("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxR
                 `<h3>${video.snippet.title}</h3>` + //add video title as an h3 element
             `</a>`;
         });
-    }
-);
+    })
+    //error handling (for if you have no internet, or if response throws an error indicating that youtube servers must be down)
+    .catch(error => {
+        console.log(error);
+
+        //display error
+        videoSection.innerHTML = "<h3>ERROR: Could not fetch videos! Check your internet connection.</h3>";
+    });
