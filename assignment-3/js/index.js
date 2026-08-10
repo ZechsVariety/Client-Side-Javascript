@@ -35,6 +35,7 @@ fetch("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxR
         //run through each video that was retrieved
         json.items.forEach(video => {
             //retrieve relevant values
+            
             let videoUrl = `https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`;
             let rankingNum = video.snippet.position + 1;
             let thumbnail = video.snippet.thumbnails.standard.url;
@@ -44,6 +45,9 @@ fetch("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxR
             //truncate the description so that it doesn't take up a huge portion of the page
             let truncatedDesc = fullDesc.substring(0, descCharacterCount) + "...";
 
+            let date = video.snippet.publishedAt;
+            let formattedDate = date.split("T")[0]; //remove the time portion (beyond "T"). ex: "2024-04-05T01:08:29Z" becomes just "2024-04-05"
+
             //update visually
             videoSection.innerHTML += 
             `<a target="_blank" href="${videoUrl}">` + //make all child elements clickable (redirects to video url in new tab)
@@ -51,7 +55,8 @@ fetch("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxR
                 `<h3>#${rankingNum}: ${title}</h3>` + //display ranking and title as an h3
             `</a>` +
             `<div>` +
-                `<h4>Description:</h4><p>${truncatedDesc}</p>` +
+                `<h4>Publish date:</h4><p>${formattedDate}</p>` + //date
+                `<h4>Description:</h4><p>${truncatedDesc}</p>` + //description
             `</div>`;
         });
     })
