@@ -34,7 +34,8 @@ fetch("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxR
         //run through each video that was retrieved
         json.items.forEach(video => {
             videoSection.innerHTML += 
-            `<a href="https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}">` + //make all child elements clickable (redirects to video url)
+            `<a target="_blank" href="https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}">` + //make all child elements clickable (redirects to video url in new tab)
+                `<img src="${video.snippet.thumbnails.standard.url}" />` + //show thumbnail image
                 `<h3>${video.snippet.title}</h3>` + //add video title as an h3 element
             `</a>`;
         });
