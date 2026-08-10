@@ -7,7 +7,7 @@ const creatorName = "Zecheriah Ferguson";
 const creatorStudentID = 200639774;
 
 //modifiers
-const descCharacterCount = 100;
+const descCharacterCount = 200;
 
 //dynamically add name and student id to footer
 footerText.textContent = `Demonstration by: ${creatorName} - ${creatorStudentID}`;
@@ -35,14 +35,15 @@ fetch("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxR
         //run through each video that was retrieved
         json.items.forEach(video => {
             //retrieve relevant values
-            
-            let videoUrl = `https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`;
-            let rankingNum = video.snippet.position + 1;
-            let thumbnail = video.snippet.thumbnails.standard.url;
+
+            let videoUrl = `https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}&list=PLOSODkKpkvaQQd0AFDbe2vNvfRhhLAz6a`; //grab url from within playlist
+            let rankingNum = video.snippet.position + 1; //+1 makes the first index 1 instead of 0
+            let thumbnail = video.snippet.thumbnails.standard.url; //standard quality
             let title = video.snippet.title;
 
             let fullDesc = video.snippet.description;
             //truncate the description so that it doesn't take up a huge portion of the page
+            //thank you Shad for solution using substring: https://stackoverflow.com/a/7708849
             let truncatedDesc = fullDesc.substring(0, descCharacterCount) + "...";
 
             let date = video.snippet.publishedAt;
@@ -50,13 +51,15 @@ fetch("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxR
 
             //update visually
             videoSection.innerHTML += 
-            `<a target="_blank" href="${videoUrl}">` + //make all child elements clickable (redirects to video url in new tab)
-                `<img src="${thumbnail}" />` + //show thumbnail image
-                `<h3>#${rankingNum}: ${title}</h3>` + //display ranking and title as an h3
-            `</a>` +
             `<div>` +
-                `<h4>Publish date:</h4><p>${formattedDate}</p>` + //date
-                `<h4>Description:</h4><p>${truncatedDesc}</p>` + //description
+                `<a target="_blank" href="${videoUrl}">` + //make all child elements clickable (redirects to video url in new tab)
+                    `<h3>#${rankingNum}: ${title}</h3>` + //display ranking and title as an h3
+                    `<img src="${thumbnail}" />` + //show thumbnail image
+                `</a>` +
+                `<div>` +
+                    `<div class="videoInfo"><h4>Publish date:</h4><p>${formattedDate}</p></div>` + //date
+                    `<div class="videoInfo"><h4>Description:</h4><p>${truncatedDesc}</p></div>` + //description
+                `</div>` +
             `</div>`;
         });
     })
@@ -66,4 +69,5 @@ fetch("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxR
 
         //display error
         videoSection.innerHTML = "<h3>ERROR: Could not fetch videos! Check your internet connection.</h3>";
-    });
+    })
+;

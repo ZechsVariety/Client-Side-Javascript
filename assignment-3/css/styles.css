@@ -1,0 +1,90 @@
+body {
+    text-align: center;
+    background-color: rgb(0, 0, 72);
+}
+
+/* banner */
+header {
+    color: rgb(255, 124, 124);
+    background-color: navy;
+
+    padding: 3em;
+}
+
+/* display as columns */
+main {
+    display: flex;
+    justify-content: center;
+}
+
+/* both columns */
+#infoContainer, #videosContainer {
+    background-color: aliceblue;
+
+    margin: 0em 1em;
+
+    padding: 2em;
+}
+
+/* left column */
+#infoContainer {
+    flex-basis: 60%;
+    height: 100%;
+
+    font-size: 150%;
+}
+
+/* each video container within the right column */
+#videosContainer > div {
+    display: flex;
+
+    background-color: rgb(206, 232, 255);
+
+    margin-bottom: 1em;
+}
+
+/* clickable title and thumbnail container */
+#videosContainer a {
+    width: 50%;
+    padding: 0em 1em;
+}
+/* title */
+#videosContainer h3 {
+    margin-bottom: 0;
+}
+/* thumbnails */
+img {
+    width: 100%;
+}
+
+/* video info */
+
+.videoInfo {
+    display: flex;
+    text-align: left;
+    vertical-align: center;
+}
+/* headers */
+.videoInfo h4 {
+    padding-right: 10px;
+    font-size: 150%;
+}
+/* text */
+.videoInfo p {
+    margin: auto auto auto 0;
+}
+
+/* footer with dynamically added name and student id */
+footer {
+    background-color: black;
+    color: white;
+    padding: 1em;
+}
+
+/* youtube api button */
+#apiDocs {
+    background-color: red;
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+}
